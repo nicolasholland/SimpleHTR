@@ -1,6 +1,7 @@
 import argparse
 import json
 from typing import Tuple, List
+from os.path import dirname, join
 
 import cv2
 import editdistance
@@ -13,9 +14,10 @@ from preprocessor import Preprocessor
 
 class FilePaths:
     """Filenames and paths to data."""
-    fn_char_list = '../model/charList.txt'
-    fn_summary = '../model/summary.json'
-    fn_corpus = '../data/corpus.txt'
+    top_level_folder = dirname(dirname(__file__))
+    fn_char_list = join(top_level_folder, 'model/charList.txt')
+    fn_summary = join(top_level_folder, 'model/summary.json')
+    fn_corpus = join(top_level_folder, 'data/corpus.txt')
 
 
 def get_img_height() -> int:
