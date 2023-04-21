@@ -8,3 +8,4 @@ notes/
 dump/
 *.swp
 data/*
+*.egg-info

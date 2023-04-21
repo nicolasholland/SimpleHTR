@@ -1,3 +1,5 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import argparse
 import json
 from typing import Tuple, List
@@ -11,6 +13,8 @@ from dataloader_iam import DataLoaderIAM, Batch
 from model import Model, DecoderType
 from preprocessor import Preprocessor
 
+import warnings
+warnings.filterwarnings("ignore")
 
 class FilePaths:
     """Filenames and paths to data."""
@@ -175,6 +179,7 @@ def main():
                        'beamsearch': DecoderType.BeamSearch,
                        'wordbeamsearch': DecoderType.WordBeamSearch}
     decoder_type = decoder_mapping[args.decoder]
+
 
     # train the model
     if args.mode == 'train':
