@@ -3,10 +3,15 @@ from os.path import dirname, join
 import sys
 from typing import List, Tuple
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import warnings
+warnings.filterwarnings("ignore")
+
 import numpy as np
 import tensorflow as tf
 
-from dataloader_iam import Batch
+from simplehtr.dataloader_iam import Batch
 
 # Disable eager mode
 tf.compat.v1.disable_eager_execution()

@@ -9,12 +9,9 @@ import cv2
 import editdistance
 from path import Path
 
-from dataloader_iam import DataLoaderIAM, Batch
-from model import Model, DecoderType
-from preprocessor import Preprocessor
-
-import warnings
-warnings.filterwarnings("ignore")
+from simplehtr.dataloader_iam import DataLoaderIAM, Batch
+from simplehtr.model import Model, DecoderType
+from simplehtr.preprocessor import Preprocessor
 
 class FilePaths:
     """Filenames and paths to data."""
@@ -180,6 +177,8 @@ def main():
                        'wordbeamsearch': DecoderType.WordBeamSearch}
     decoder_type = decoder_mapping[args.decoder]
 
+    print(decoder_type)
+    return
 
     # train the model
     if args.mode == 'train':
