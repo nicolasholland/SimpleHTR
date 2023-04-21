@@ -1,5 +1,7 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import warnings
+warnings.filterwarnings("ignore")
 import argparse
 import json
 from typing import Tuple, List
@@ -136,7 +138,7 @@ def validate(model: Model, loader: DataLoaderIAM, line_mode: bool) -> Tuple[floa
     return char_error_rate, word_accuracy
 
 
-def infer(model: Model, fn_img: Path) -> None:
+def infer(model: Model, fn_img: Path):
     """Recognizes text in image provided by file path."""
     img = cv2.imread(fn_img, cv2.IMREAD_GRAYSCALE)
     assert img is not None
@@ -146,6 +148,9 @@ def infer(model: Model, fn_img: Path) -> None:
 
     batch = Batch([img], None, 1)
     recognized, probability = model.infer_batch(batch, True)
+
+    return recognized[0], probability[0]
+
     print(f'Recognized: "{recognized[0]}"')
     print(f'Probability: {probability[0]}')
 
